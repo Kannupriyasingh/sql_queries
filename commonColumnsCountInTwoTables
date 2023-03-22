@@ -1,0 +1,24 @@
+SELECT COUNT(*) AS commonColumnsCount
+FROM information_schema.columns
+WHERE table_schema = 'databaseName'
+    AND table_name = 'firstTableName'
+    AND column_name IN (
+        SELECT column_name
+        FROM information_schema.columns
+        WHERE table_schema = 'databaseName'
+            AND table_name = 'secondTableName'
+    );
+
+
+
+example - 
+              SELECT *
+              FROM information_schema.columns
+              WHERE table_schema = 'resbilling'
+                  AND table_name = 'ECOURSES'
+                  AND column_name IN (
+                      SELECT column_name
+                      FROM information_schema.columns
+                      WHERE table_schema = 'resbilling'
+                          AND table_name = 'REVIEWS'
+                  );
